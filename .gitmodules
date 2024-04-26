@@ -1,0 +1,9 @@
+[submodule "api-gateway"]
+	path = api-gateway
+	url = git@github.com:Microservices-Spot/api-gateway.git
+[submodule "auth"]
+	path = auth
+	url = git@github.com:Microservices-Spot/auth.git
+[submodule "users"]
+	path = users
+	url = git@github.com:Microservices-Spot/users.git
