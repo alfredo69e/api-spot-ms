@@ -7,3 +7,6 @@
 [submodule "users"]
 	path = spot-ms-users
 	url = git@github.com:Microservices-Spot/users.git
+[submodule "roles"]
+	path = spot-ms-roles
+	url = git@github.com:Microservices-Spot/roles.git

@@ -1,0 +1,72 @@
+version: '3.9'
+services:
+
+  # Nats
+  nats-spot:
+    image: nats:latest
+    container_name: nats-spot
+    ports:
+      - 8222:8222
+    volumes:
+      - ./config-nats/:/etc/nats
+    command: '-c /etc/nats/nats-server.conf'
+    networks:
+      - spot_net
+
+  # Gateway
+  spot-gateway:
+    image: spot-ms-gateway:${APP_VERSION}
+    container_name: spot-gateway
+    build:
+      context: ./spot-gateway
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-gateway/.env
+    volumes:
+      - ./spot-gateway/src:/usr/src/app/src
+    restart: always
+    ports:
+      - ${PORT}:3000
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
+  # Auth
+  spot-auth:
+    image: spot-ms-auth:${APP_VERSION}
+    container_name: spot-ms-auth
+    build:
+      context: ./spot-ms-auth
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-auth/.env
+    volumes:
+      - ./spot-ms-auth/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
+  # User
+  spot-users:
+    image: spot-ms-users:${APP_VERSION}
+    container_name: spot-ms-users
+    build:
+      context: ./spot-ms-users
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-users/.env
+    volumes:
+      - ./spot-ms-users/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
+
+networks:
+  spot_net:
+    name: spot_net
