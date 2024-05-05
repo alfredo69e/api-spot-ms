@@ -67,6 +67,40 @@ services:
     depends_on:
       - nats-spot
 
+  # Emails
+  spot-emails:
+    image: spot-ms-emails:${APP_VERSION}
+    container_name: spot-ms-emails
+    build:
+      context: ./spot-ms-emails
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-emails/.env
+    volumes:
+      - ./spot-ms-emails/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
+  # Codes
+  spot-codes:
+    image: spot-ms-codes:${APP_VERSION}
+    container_name: spot-ms-codes
+    build:
+      context: ./spot-ms-codes
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-codes/.env
+    volumes:
+      - ./spot-ms-codes/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
 
 networks:
   spot_net:

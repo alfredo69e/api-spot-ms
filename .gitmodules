@@ -7,3 +7,12 @@
 [submodule "users"]
 	path = spot-ms-users
 	url = git@github.com:Microservices-Spot/users.git
+[submodule "codes"]
+	path = spot-ms-codes
+	url = git@github.com:Microservices-Spot/codes.git
+[submodule "emails"]
+	path = spot-ms-emails
+	url = git@github.com:Microservices-Spot/emails.git
+[submodule "notifications"]
+	path = spot-ms-notifications
+	url = git@github.com:Microservices-Spot/notifications.git
