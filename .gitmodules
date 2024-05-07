@@ -22,3 +22,6 @@
 [submodule "currencies"]
 	path = spot-ms-currencies
 	url = git@github.com:Microservices-Spot/currencies.git
+[submodule "facilities"]
+	path = spot-ms-facilities
+	url = git@github.com:Microservices-Spot/facilities.git
