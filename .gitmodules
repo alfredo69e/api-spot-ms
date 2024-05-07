@@ -16,3 +16,9 @@
 [submodule "notifications"]
 	path = spot-ms-notifications
 	url = git@github.com:Microservices-Spot/notifications.git
+[submodule "parkings"]
+	path = spot-ms-parkings
+	url = git@github.com:Microservices-Spot/parkings.git
+[submodule "currencies"]
+	path = spot-ms-currencies
+	url = git@github.com:Microservices-Spot/currencies.git

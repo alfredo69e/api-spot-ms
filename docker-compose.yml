@@ -118,6 +118,23 @@ services:
     depends_on:
       - nats-spot
 
+  # Notifications
+  spot-parkings:
+    image: spot-ms-parkings:${APP_VERSION}
+    container_name: spot-ms-parkings
+    build:
+      context: ./spot-ms-parkings
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-parkings/.env
+    volumes:
+      - ./spot-ms-parkings/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
 
 networks:
   spot_net:
