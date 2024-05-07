@@ -118,7 +118,7 @@ services:
     depends_on:
       - nats-spot
 
-  # Notifications
+  # Parkings
   spot-parkings:
     image: spot-ms-parkings:${APP_VERSION}
     container_name: spot-ms-parkings
@@ -129,6 +129,23 @@ services:
     env_file: ./spot-ms-parkings/.env
     volumes:
       - ./spot-ms-parkings/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
+  # Currencies
+  spot-currencies:
+    image: spot-ms-currencies:${APP_VERSION}
+    container_name: spot-ms-currencies
+    build:
+      context: ./spot-ms-currencies
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-currencies/.env
+    volumes:
+      - ./spot-ms-currencies/src:/usr/src/app/src
     restart: always
     networks:
       - spot_net
