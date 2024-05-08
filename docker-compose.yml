@@ -152,6 +152,40 @@ services:
     depends_on:
       - nats-spot
 
+  # Facility
+  spot-facilities:
+    image: spot-ms-facilities:${APP_VERSION}
+    container_name: spot-ms-facilities
+    build:
+      context: ./spot-ms-facilities
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-facilities/.env
+    volumes:
+      - ./spot-ms-facilities/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
+  # Files
+  spot-files:
+    image: spot-ms-files:${APP_VERSION}
+    container_name: spot-ms-files
+    build:
+      context: ./spot-ms-files
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-files/.env
+    volumes:
+      - ./spot-ms-files/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
 
 networks:
   spot_net:
