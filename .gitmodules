@@ -28,3 +28,6 @@
 [submodule "files"]
 	path = spot-ms-files
 	url = git@github.com:Microservices-Spot/files.git
+[submodule "google-maps"]
+	path = spot-ms-google-maps
+	url = git@github.com:Microservices-Spot/google-maps.git
