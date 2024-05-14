@@ -186,6 +186,23 @@ services:
     depends_on:
       - nats-spot
 
+  # Files
+  spot-google-maps:
+    image: spot-ms-google-maps:${APP_VERSION}
+    container_name: spot-ms-google-maps
+    build:
+      context: ./spot-ms-google-maps
+      target: dev
+      dockerfile: Dockerfile
+    env_file: ./spot-ms-google-maps/.env
+    volumes:
+      - ./spot-ms-google-maps/src:/usr/src/app/src
+    restart: always
+    networks:
+      - spot_net
+    depends_on:
+      - nats-spot
+
 
 networks:
   spot_net:
